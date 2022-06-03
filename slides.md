@@ -7,9 +7,9 @@ theme: gaia
 
 ---
 
-# get fit at git <!-- fit -->
-
 <!-- _class: invert -->
+
+# get fit at git <!-- fit -->
 
 ### hands-on git beginners training
 
@@ -48,9 +48,9 @@ Marc Gonzalez-Carnicer `gomr@betterask.erni`
 
 ---
 
-# basic concepts
 <!-- _class: invert -->
 
+# basic concepts<!-- fit -->
 
 ## (quick review)
 
@@ -144,9 +144,9 @@ Reminder: git was designed for being able to remove unused work.
 
 ---
 
-# configure your git <!-- fit -->
-
 <!-- _class: invert -->
+
+# configure your git<!-- fit -->
 
 ### get ready to work with git
 
@@ -200,9 +200,9 @@ Configure the `git lol` __git-alias__ (see & copy from `git_aliases.sh`), your f
 
 ---
 
-# master the log <!-- fit -->
-
 <!-- _class: invert -->
+
+# master the log <!-- fit -->
 
 ---
 
@@ -250,9 +250,11 @@ The `HEAD` refers to the currently _checked-out commit_.
 
 ----
 
-# exercise #1: log and diff
- <!-- fit -->
 <!-- _class: invert -->
+
+# exercise #1
+
+### log and diff<!-- fit -->
 
 ---
 
@@ -299,9 +301,9 @@ Using the CLI:
 
 ---
 
-# basic commands <!-- fit -->
-
 <!-- _class: invert -->
+
+# basic commands<!-- fit -->
 
 ---
 
@@ -344,10 +346,9 @@ Is there any one you don't know?
 
 ---
 
-## integration example<!-- fit -->
-
 <!-- _class: invert -->
 
+## integration example<!-- fit -->
 
 ---
 
@@ -456,10 +457,11 @@ Force a _no fast-forward_ merge with `--no-ff` (checkbox).
 
 ---
 
-# exercise #2<!-- fit -->
 <!-- _class: invert -->
 
-# integration commands <!-- fit -->
+# exercise #2
+
+# integration commands<!-- fit -->
 
 ---
 
@@ -473,11 +475,11 @@ Replicate the examples in the previous section :
 
 ---
 
-
-# best practices, tips #1
 <!-- _class: invert -->
 
-# stash is your friend <!-- fit -->
+# best practices / tips #1
+
+# the stash is your friend<!-- fit -->
 
 ---
 
@@ -511,14 +513,15 @@ For _unstaging_ (remove from index/stash), you can either :
 
 NOTE: _tortoise git_ eliminates the stash (considers modified files as staged without an explicit add)
 
-Question for linux fans: Notice the awkward syntax above. What does the '--' stand for?)`
+Question for linux fans: Notice the awkward syntax above. What does the '--' stand for?)
 
 ---
 
-# exercise #3<!-- fit -->
 <!-- _class: invert -->
 
-# stashing / partial add  <!-- fit -->
+# exercise #3
+
+# stashing / partial add<!-- fit -->
 
 ---
 
@@ -544,10 +547,9 @@ Not covered in this training.
 
 ---
 
-# change history<!-- fit -->
-
 <!-- _class: invert -->
 
+# changing history<!-- fit -->
 
 ---
 
@@ -624,8 +626,9 @@ Therefore, never `push --force` already pushed branches that have been modified.
 
 ---
 
-# exercise #4<!-- fit -->
 <!-- _class: invert -->
+
+# exercise #4
 
 # interactive rebase<!-- fit -->
 
@@ -652,12 +655,11 @@ You may have to use `git rebase --abort`.
 
 ---
 
-
-# conflict solving<!-- fit -->
 <!-- _class: invert -->
 
----
+# conflict solving<!-- fit -->
 
+---
 
 # conflict solving
 
@@ -738,10 +740,11 @@ CLI:
 
 ---
 
-# exercise #5<!-- fit -->
 <!-- _class: invert -->
 
-# fix a merge conflict
+# exercise #5
+
+# fix a merge conflict<!-- fit -->
 
 ---
 
@@ -762,8 +765,11 @@ Cause a merge conflict by:
 
 ---
 
-# best practices, tips #2
 <!-- _class: invert -->
+
+# best practices / tips #2
+
+## check your wallet<!-- fit -->
 
 ---
 
@@ -787,9 +793,9 @@ The _upstream_ : default branch where to merge, rebase, push to or pull from.
 
 ---
 
-# remotes<!-- fit -->
-
 <!-- _class: invert -->
+
+# remotes<!-- fit -->
 
 ---
 
@@ -848,9 +854,9 @@ tip: __don't use__ `git pull` (or at least be careful): it's dangerous - better 
 
 ---
 
-# more integration commands <!-- fit -->
-
 <!-- _class: invert -->
+
+# more integration commands<!-- fit -->
 
 ---
 
@@ -877,10 +883,11 @@ Discover the 3 `git reset` options with the exercise:
 
 ---
 
-# exercise #6<!-- fit -->
 <!-- _class: invert -->
 
-# cherry-pick, revert, reset
+# exercise #6
+
+# cherry-pick, revert, reset<!-- fit -->
 
 ---
 
@@ -914,11 +921,11 @@ With the CLI (not with tortoise), do:
 
 ---
 
-# best practices, tips #3<!-- fit -->
-
 <!-- _class: invert -->
 
-# good practices
+# best practices / tips #3
+
+# merge vs rebase & cleanup
 
 ---
 
@@ -947,11 +954,11 @@ My personal take:
 
 ---
 
-# best practices, tips #4<!-- fit -->
-
 <!-- _class: invert -->
 
-## keep your work safe
+# best practices / tips #4
+
+## keep your work safe<!-- fit -->
 
 ---
 
@@ -967,10 +974,11 @@ Unlike svn, git is designed to forget useless work
 
 ---
 
-# exercise #7<!-- fit -->
 <!-- _class: invert -->
 
-# backup your work
+# exercise #7
+
+# backup your work<!-- fit -->
 
 ---
 
@@ -991,7 +999,7 @@ Unlike svn, git is designed to forget useless work
 
 ---
 
-# exercise #7C (optional): create a remote mirror
+# exercise #7C : create a remote mirror [optional]
 
 For enhanced safety (different HD), create a remote mirror (linux machine only):
 
@@ -1006,11 +1014,11 @@ On the local machine:
 
 ---
 
-# best practices, tips #5<!-- fit -->
-
 <!-- _class: invert -->
 
-## disaster recovery
+# best practices / tips #5
+
+## disaster recovery<!-- fit -->
 
 ---
 
@@ -1027,10 +1035,11 @@ Not covered in this training.
 
 ---
 
-# best practices, tips #6<!-- fit -->
-
-## for svn users
 <!-- _class: invert -->
+
+# best practices / tips #6
+
+## for svn users<!-- fit -->
 
 ---
 
@@ -1069,6 +1078,7 @@ Not covered in this training.
 ---
 
 # Thank you! <!-- fit -->
+
 <!-- _class: invert -->
 
 
