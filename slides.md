@@ -3,7 +3,7 @@ title: get fit at git
 description: hands-on git beginners training
 paginate: true
 marp: true
-theme: uncover
+theme: default
 
 ---
 
