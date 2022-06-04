@@ -7,9 +7,9 @@ theme: gaia
 
 ---
 
-# get fit at git <!-- fit -->
-
 <!-- _class: invert -->
+
+# get fit at git <!-- fit -->
 
 ### hands-on git beginners training
 
@@ -28,6 +28,17 @@ Marc Gonzalez-Carnicer `gomr@betterask.erni`
 
 # introduction
 
+This training:
+
+* is about _getting fit at git_
+* contains _tips_ & _best practices_
+* has very easy exercises (too easy?)
+* covers the very basics (too obvious?) and fundamentals
+* some contents and exercises may be skipped (depending on your previous knowledge)
+* it's long, with probably too much information - you may do / read it at home
+
+---
+
 ### tell us about:
 
 * your experience with git (and other VCSs)
@@ -37,20 +48,9 @@ Marc Gonzalez-Carnicer `gomr@betterask.erni`
 
 ---
 
-### this training
-
-* it's about getting fit at git
-* some exercises are very easy
-* will cover the very basics and fundamentals
-* some contents and exercises may be skipped (depending on the participants previous knowledge)
-* is very long with probably too much information, that you may do at home
-
-
----
-
-# basic concepts
 <!-- _class: invert -->
 
+# basic concepts<!-- fit -->
 
 ## (quick review)
 
@@ -75,15 +75,15 @@ Where everything is stored.
 
 history is a graph: nodes + lines
 
-* graph nodes : commits - are diffs / patch / deltas
-* graph lines (between nodes) : define ancestry
-* strictly speaking, the arrow sense in git means the parent, not the time or progress
+* graph nodes : commits - are diffs / patches / deltas
+* graph lines (between nodes) : define ancestry (parent)
+* strictly speaking, the arrow direction in git graphs indicate the parent, not the time or progress
 
 ---
 
 # git graph
 
-See the nodes, and arrows pointing to the parent node.
+See the nodes, as well as the arrows pointing to the parent node.
 
 ![](./images/gitGraph.png)
 
@@ -112,9 +112,7 @@ The main reason why git was created is because in svn (the mainstream VCS at the
 
 A _git branch_ does __not__ imply a _bifurcation_, as in a tree:
 
-![width:340px](./images/treeBranch.png)
-
-Humans tend to think of branches in a repository as the ones in a tree.
+![width:340px](./images/treeBranch.png) Humans think of branches as the ones in a tree.
 
 ---
 
@@ -124,9 +122,8 @@ A _git branch_ is a _reference_ that points to a commit.
 
 In git, branching (bifurcation) is allowed thanks to _git branches_.
 
-![width:240px](./images/branch_not_branching_22_rebaseKeep.png)
+![width:240px](./images/branch_not_branching_22_rebaseKeep.png) Here we see 3 _git branches_ and only 2 _bifurcations_.
 
-Here we see 3 _git branches_ and only 2 _bifurcations_.
 
 ---
 
@@ -139,17 +136,20 @@ Branching happens without explicitly branching:
 
 ---
 
-# no branch no commit
+# no branch no commits
 
 Commits without a _git branch_ are deleted / lost.
 
-Reminder: git was designed for being able to remove unused work.
+* ensure your commits have a branch (or reference)
+* delete a branch to get rid of useless commits
+
+Reminder: git was designed for being able to remove unused work. Downside: beginners may lose valuable work.
 
 ---
 
-# configure your git <!-- fit -->
-
 <!-- _class: invert -->
+
+# configure your git<!-- fit -->
 
 ### get ready to work with git
 
@@ -200,20 +200,38 @@ Configure the `git lol` __git-alias__ (see & copy from `git_aliases.sh`), your f
 * set the `EDITOR` environment variable, like i.e.:`export EDITOR='vim -X'`
 * if using linux, configure your `.bashrc` with alias files (like the ones provided in this training)
 
+---
+
+# configure files to ignore
+
+For each one of your repos, configure the files to ignore by editting `.gitignore` at the top of your repo. It contains entries such as:
+
+* `output.html` : generated files, out of git
+* `build/output/` : build folders
+* `*.o` : typical for C/C++ if no build folder
+* `*.swp` : if you use vim
+
+In github there are ignore templates ready to use when a repo is created.
+
 
 ---
 
-# master the log <!-- fit -->
-
 <!-- _class: invert -->
+
+# master the log <!-- fit -->
 
 ---
 
 # understand the log
 
-Identify in graphs the nodes (commits), the connections, the parents and the children. Refer to previous slide with graph or to upcoming _exercise #1_.
+Identify in a git graph (refer to previous slide with graph or to upcoming _exercise #1_):
 
-Not using the log view with branches is like typing with half eye instead of 2. This feature is a bit hidden in github (_insights_ / _network_).
+- the nodes (commits)
+- the connections
+- the parents and the children.
+- the merge commits
+
+Not using the graph log view with branches is like typing with half eye instead of 2. This feature is a bit hidden in github (_insights_ / _network_).
 
 ---
 
@@ -246,16 +264,18 @@ The HASH is computed from the commit diff, the author, date, and several other d
 
 ### the HEAD
 
-The `HEAD` refers to the currently _checked-out commit_.
+The `HEAD` refers to the __commit__ where the currently _checked-out branch_ is pointing to.
 
 * tip : refer to commits using relative `HEAD` positions, instead of HASH (hard to memorize and type)
 * examples: `HEAD~6, HEAD~2, HEAD~1 (= HEAD~), HEAD^1, HEAD^2`
 
 ----
 
-# exercise #1: log and diff
- <!-- fit -->
 <!-- _class: invert -->
+
+# exercise #1
+
+### log and diff<!-- fit -->
 
 ---
 
@@ -302,15 +322,15 @@ Using the CLI:
 
 ---
 
-# basic commands <!-- fit -->
-
 <!-- _class: invert -->
+
+# basic commands<!-- fit -->
 
 ---
 
 # basic commands (1)
 
-Is there any one you don't know?
+Is there any one of these commands you don't know? Just ask.
 
 * `git clone` (once per repo)
 * `git init` (once per repo)
@@ -325,7 +345,7 @@ Is there any one you don't know?
 
 # basic commands (2)
 
-Is there any one you don't know?
+Is there any one of these commands you don't know? Just ask.
 
 * `git show`
 * `git diff`
@@ -338,19 +358,18 @@ Is there any one you don't know?
 
 # merge vs rebase
 
-2 ways of integrating:
+Merge & rebase are 2 ways of integrating 2 branches together:
 
-* merge : new _merge commit_
-* rebase : moves commits to _new base_
+* merge : creates a __new__ _merge commit_
+* rebase : __moves__ the branch commits __to__ a _new base_
 
-![bg right 50%](./images/MergeVsRebase.png)
+![bg right 60%](./images/MergeVsRebase.png)
 
 ---
 
-## integration example<!-- fit -->
-
 <!-- _class: invert -->
 
+## integration example<!-- fit -->
 
 ---
 
@@ -417,11 +436,11 @@ Now with rebase. First, let's get back to the previous situation.
 
 ### compare the merge and rebase commits
 
-* select on both commits (merge + rebase)
-* click on _compare revisions_
+* select both commits (merge + rebase)
+* right click on _compare revisions_
 * verify they are identical
 
-![](./images/16_compareMergeRebase.png)
+![width:500px](./images/16_compareMergeRebase.png) Yes, they are identical!
 
 
 ---
@@ -459,10 +478,11 @@ Force a _no fast-forward_ merge with `--no-ff` (checkbox).
 
 ---
 
-# exercise #2<!-- fit -->
 <!-- _class: invert -->
 
-# integration commands <!-- fit -->
+# exercise #2
+
+# integration commands<!-- fit -->
 
 ---
 
@@ -476,11 +496,11 @@ Replicate the examples in the previous section :
 
 ---
 
-
-# best practices, tips #1
 <!-- _class: invert -->
 
-# stash is your friend <!-- fit -->
+# best practices / tips #1
+
+# the stash is your friend<!-- fit -->
 
 ---
 
@@ -514,14 +534,15 @@ For _unstaging_ (remove from index/stash), you can either :
 
 NOTE: _tortoise git_ eliminates the stash (considers modified files as staged without an explicit add)
 
-Question for linux fans: Notice the awkward syntax above. What does the '--' stand for?)`
+Question for linux fans: Notice the awkward syntax above. What does the '--' stand for?)
 
 ---
 
-# exercise #3<!-- fit -->
 <!-- _class: invert -->
 
-# stashing / partial add  <!-- fit -->
+# exercise #3
+
+# stashing / partial add<!-- fit -->
 
 ---
 
@@ -547,10 +568,9 @@ Not covered in this training.
 
 ---
 
-# change history<!-- fit -->
-
 <!-- _class: invert -->
 
+# changing history<!-- fit -->
 
 ---
 
@@ -583,7 +603,7 @@ Allows you to do this with your commits :
 
 ---
 
-# CLI guided menu
+## CLI guided menu (self-documented)
 
 ```
 pick d1b17a3c6b fix the bug
@@ -614,8 +634,12 @@ pick a2b1c037f9 typo fixing the bug
 
 * GUI: select commit from where you want to rebase, then tick the _force rebase_ checkbox
 * CLI: select _from where_ to change with `HEAD~<n>`.
-* tip: with the CLI, use `git reset HEAD~` to edit the commit contents
 
+Tips:
+
+* with the CLI, use `git reset HEAD~` to edit the commit contents
+* when rebasing many commits, don't do them all at once (simplify)
+* do backups of your latest _good_ branch
 
 ---
 
@@ -623,12 +647,13 @@ pick a2b1c037f9 typo fixing the bug
 
 When collaborating, and your work has been shared, don't cause trouble to your colleagues. They may have started their work after yours.
 
-Therefore, never `push --force` already pushed branches that have been modified. Even if you just changed a title. Well, _never never ..._
+Therefore, __never__ `push --force` already pushed branches that you have modified. Even if you just changed a title. Well, _never never ..._
 
 ---
 
-# exercise #4<!-- fit -->
 <!-- _class: invert -->
+
+# exercise #4
 
 # interactive rebase<!-- fit -->
 
@@ -652,15 +677,13 @@ What to do in case of error / too many merge conflicts:
 
 You may have to use `git rebase --abort`.
 
-
 ---
 
-
-# conflict solving<!-- fit -->
 <!-- _class: invert -->
 
----
+# conflict solving<!-- fit -->
 
+---
 
 # conflict solving
 
@@ -738,13 +761,17 @@ CLI:
 * `git mergetool <file>` (`git status` to find out which file)
 * fix the conflicts (there's no recipe for that)
 * `git add` on the CLI
+* if in trouble, do `git reset --hard HEAD` / `git merge --abort`
+
 
 ---
 
-# exercise #5<!-- fit -->
+
 <!-- _class: invert -->
 
-# fix a merge conflict
+# exercise #5
+
+# fix a merge conflict<!-- fit -->
 
 ---
 
@@ -765,8 +792,11 @@ Cause a merge conflict by:
 
 ---
 
-# best practices, tips #2
 <!-- _class: invert -->
+
+# best practices / tips #2
+
+## check your wallet<!-- fit -->
 
 ---
 
@@ -790,9 +820,9 @@ The _upstream_ : default branch where to merge, rebase, push to or pull from.
 
 ---
 
-# remotes<!-- fit -->
-
 <!-- _class: invert -->
+
+# remotes<!-- fit -->
 
 ---
 
@@ -808,15 +838,15 @@ It may be in the same disk, in the same computer, in another computer, or in the
 
 The way most teams using git with github work: like svn teams.
 
-![](./images/repoCentral.png)
+![width:340px](./images/repoCentral.png) share only through a central repo
 
 ---
 
 # distributed repo
 
-A non-centralized way of working. Each repo can be assigned a different role or person.
+A non-centralized way of working. Each repo can be assigned a different role or to a person.
 
-![](./images/repoDistrib.png)
+![width:340px](./images/repoDistrib.png) share independently between repos
 
 ---
 
@@ -851,9 +881,9 @@ tip: __don't use__ `git pull` (or at least be careful): it's dangerous - better 
 
 ---
 
-# more integration commands <!-- fit -->
-
 <!-- _class: invert -->
+
+# more integration commands<!-- fit -->
 
 ---
 
@@ -880,10 +910,11 @@ Discover the 3 `git reset` options with the exercise:
 
 ---
 
-# exercise #6<!-- fit -->
 <!-- _class: invert -->
 
-# cherry-pick, revert, reset
+# exercise #6
+
+# cherry-pick, revert, reset<!-- fit -->
 
 ---
 
@@ -917,11 +948,22 @@ With the CLI (not with tortoise), do:
 
 ---
 
-# best practices, tips #3<!-- fit -->
+# exercise #6c : revert + squash
+
+When performing an _interactive rebase_, it is possible to do _magic_ with history combining `revert` + `squash`, just following the algebraic principle of:
+
+> A + B + C = (A + B) + C = A + (B + C)
+
+Not covered in this training.
+
+---
+
 
 <!-- _class: invert -->
 
-# good practices
+# best practices / tips #3
+
+# merge vs rebase & cleanup
 
 ---
 
@@ -933,7 +975,8 @@ My personal take:
 
 * if simple (few branches with nearby origin) : __MERGE__
 * if reintegrating (from the mainline): __REBASE__
-* other cases?
+* other cases? depends
+* you can always rewrite history (before _publishing_)
 
 ---
 
@@ -950,11 +993,11 @@ My personal take:
 
 ---
 
-# best practices, tips #4<!-- fit -->
-
 <!-- _class: invert -->
 
-## keep your work safe
+# best practices / tips #4
+
+## keep your work safe<!-- fit -->
 
 ---
 
@@ -970,10 +1013,11 @@ Unlike svn, git is designed to forget useless work
 
 ---
 
-# exercise #7<!-- fit -->
 <!-- _class: invert -->
 
-# backup your work
+# exercise #7
+
+# backup your work<!-- fit -->
 
 ---
 
@@ -994,26 +1038,26 @@ Unlike svn, git is designed to forget useless work
 
 ---
 
-# exercise #7C (optional): create a remote mirror
+# exercise #7C : create a remote mirror
 
 For enhanced safety (different HD), create a remote mirror (linux machine only):
 
 On the remote machine:
 
-* `git init --mirror # once, on the remote machine`
+1. `git init --mirror` : once
 
 On the local machine:
 
-1. `git remote add <remote name> <remote url>` : once
-1. `git push --all <remote name>` : as much as required
+2. `git remote add <remote name> <remote url>` : once
+3. `git push --all <remote name>` : as much as required
 
 ---
 
-# best practices, tips #5<!-- fit -->
-
 <!-- _class: invert -->
 
-## disaster recovery
+# best practices / tips #5
+
+## disaster recovery<!-- fit -->
 
 ---
 
@@ -1021,8 +1065,8 @@ On the local machine:
 
 I messed it up. My work is lost. Can I get it back?
 
-1. did you do a branch before resetting?
-1. did you make a backup in a remote?
+* did you do a branch before resetting?
+* did you make a backup in a remote?
 
 If the answer to both questions is no, then perhaps the `git reflog` command may help.
 
@@ -1030,10 +1074,11 @@ Not covered in this training.
 
 ---
 
-# best practices, tips #6<!-- fit -->
-
-## for svn users
 <!-- _class: invert -->
+
+# best practices / tips #6
+
+## for svn users<!-- fit -->
 
 ---
 
@@ -1055,7 +1100,7 @@ The git UI (its commands) do not have a reputation for being intuitive. Same act
 - `git clone` / `svn checkout`
 - `git checkout` / `svn switch`
 - `git pull --rebase` / `svn update`
-- `git commit` / N/A
+- `git commit` / `svn diff >/tmp/mySafepoint1.patch`
 - `git push` / `svn commit`
 - ...
 
@@ -1071,7 +1116,26 @@ Not covered in this training.
 
 ---
 
+<!-- _class: invert -->
+
+# homework<!-- fit -->
+
+---
+
+# homework
+
+Don't forget what you have just learned, it will pay off. Practice. Again. Try. Retry: __get fit at git !__
+
+* repeat the exercises
+* do this hands-on online tutorial: https://learngitbranching.js.org/ absolutely recommended!
+* read books and tutorials:
+  - [Pro git book](https://git-scm.com/book/en/v2) by Scott Chacon & Ben Straub
+  - [bitbucket tutorials](https://www.atlassian.com/git/tutorials) by atlassian
+
+---
+
 # Thank you! <!-- fit -->
+
 <!-- _class: invert -->
 
 
