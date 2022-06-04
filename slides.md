@@ -146,6 +146,13 @@ Branching happens without explicitly branching:
 1. different users, same branch
 1. different cloned repos (same user), same branch
 
+![width:480px](./images/branchingWithoutNewBranch.png)
+
+```
+int a = 0;           int a = 0;
+int b = 3;           int b = 4;
+```
+
 ---
 
 # no branch no commits
