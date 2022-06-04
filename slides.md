@@ -112,9 +112,7 @@ The main reason why git was created is because in svn (the mainstream VCS at the
 
 A _git branch_ does __not__ imply a _bifurcation_, as in a tree:
 
-![width:340px](./images/treeBranch.png)
-
-Humans tend to think of branches in a repository as the ones in a tree.
+![width:340px](./images/treeBranch.png) Humans think of branches as the ones in a tree.
 
 ---
 
@@ -124,9 +122,8 @@ A _git branch_ is a _reference_ that points to a commit.
 
 In git, branching (bifurcation) is allowed thanks to _git branches_.
 
-![width:240px](./images/branch_not_branching_22_rebaseKeep.png)
+![width:240px](./images/branch_not_branching_22_rebaseKeep.png) Here we see 3 _git branches_ and only 2 _bifurcations_.
 
-Here we see 3 _git branches_ and only 2 _bifurcations_.
 
 ---
 
@@ -421,7 +418,7 @@ Now with rebase. First, let's get back to the previous situation.
 * click on _compare revisions_
 * verify they are identical
 
-![](./images/16_compareMergeRebase.png)
+![width:500px](./images/16_compareMergeRebase.png) Yes, they are identical!
 
 
 ---
@@ -808,15 +805,15 @@ It may be in the same disk, in the same computer, in another computer, or in the
 
 The way most teams using git with github work: like svn teams.
 
-![](./images/repoCentral.png)
+![width:340px](./images/repoCentral.png) share only through a central repo
 
 ---
 
 # distributed repo
 
-A non-centralized way of working. Each repo can be assigned a different role or person.
+A non-centralized way of working. Each repo can be assigned a different role or to a person.
 
-![](./images/repoDistrib.png)
+![width:340px](./images/repoDistrib.png) share independently between repos
 
 ---
 
