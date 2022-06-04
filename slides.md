@@ -28,23 +28,23 @@ Marc Gonzalez-Carnicer `gomr@betterask.erni`
 
 # introduction
 
+This training:
+
+* is about _getting fit at git_
+* contains _tips_ & _best practices_
+* has very easy exercises (too easy?)
+* covers the very basics (too obvious?) and fundamentals
+* some contents and exercises may be skipped (depending on your previous knowledge)
+* it's long, with probably too much information - you may do / read it at home
+
+---
+
 ### tell us about:
 
 * your experience with git (and other VCSs)
 * what you can do with git
 * what you don't feel comfortable with
 * your expectations for this training
-
----
-
-### this training
-
-* it's about getting fit at git
-* some exercises are very easy
-* will cover the very basics and fundamentals
-* some contents and exercises may be skipped (depending on the participants previous knowledge)
-* is very long with probably too much information, that you may do at home
-
 
 ---
 
