@@ -7,11 +7,19 @@ theme: gaia
 
 ---
 
+![bg](./images/coverGFAT.png)
+
+---
+
 <!-- _class: invert -->
 
-# get fit at git <!-- fit -->
+# get fit at git<!-- fit -->
 
 ### hands-on git beginners training
+
+* with exercises
+* best practices & tips
+* direct feedback
 
 Marc Gonzalez-Carnicer `gomr@betterask.erni`
 
@@ -19,7 +27,11 @@ Marc Gonzalez-Carnicer `gomr@betterask.erni`
 
 ---
 
-# what is git?
+# what is git?<!-- fit -->
+
+The world's most used VCS. Conceived by Linus Torvalds, who lacked a tool to manage the linux kernel contributions.
+
+Very powerful & efficient, though not very intuitive for beginners. Therefore, it can be dangerous to use without proper knowledge & practice.
 
 ![bg left 85%](./images/gitComplicatedXKCD.png)
 ![bg right 70%](./images/gitLogoText.png)
@@ -280,6 +292,10 @@ The `HEAD` refers to the __commit__ where the currently _checked-out branch_ is 
 ---
 
 # exercise #1
+
+This exercise is about using the _git log graph_ to see history and diffs, between commits and between branches
+
+### get the repo
 
 Clone the demo repo:
 
@@ -1134,8 +1150,12 @@ Don't forget what you have just learned, it will pay off. Practice. Again. Try. 
 
 ---
 
-# Thank you! <!-- fit -->
+# That's it!<!-- fit -->
 
+# Any questions?<!-- fit -->
 <!-- _class: invert -->
 
+---
+
+![bg](./images/closerGFAT.png)
 
