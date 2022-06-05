@@ -17,8 +17,8 @@ theme: gaia
 
 ### hands-on git beginners training
 
-* with exercises
-* best practices & tips
+* curated & distilled know-how
+* with exercises, best practices & tips
 * direct feedback
 
 Marc Gonzalez-Carnicer `gomr@betterask.erni`
@@ -31,10 +31,9 @@ Marc Gonzalez-Carnicer `gomr@betterask.erni`
 
 The world's most used VCS. Conceived by Linus Torvalds, who lacked a tool to manage the linux kernel contributions.
 
-Very powerful & efficient, though not very intuitive for beginners. Therefore, it can be dangerous to use without proper knowledge & practice.
+Very powerful & efficient, though not very intuitive for beginners. Therefore, it can be dangerous to use without the proper knowledge & practice.
 
-![bg left 85%](./images/gitComplicatedXKCD.png)
-![bg right 70%](./images/gitLogoText.png)
+![bg right 56%](./images/gitComplicatedXKCD.png)
 
 ---
 
@@ -97,13 +96,13 @@ history is a graph: nodes + lines
 
 See the nodes, as well as the arrows pointing to the parent node.
 
-![](./images/gitGraph.png)
+![](./images/gitGraph.png) find the merge node
 
 ---
 
 # patch / diff
 
-Mathematically, a node (diff / delta / patch) is defined as:
+Algebraically, a node (diff / delta / patch) is defined as:
 
 `[ contents of commit2 ]` - `[ contents of commit1 ]`
 
@@ -116,7 +115,7 @@ Mathematically, a node (diff / delta / patch) is defined as:
 
 The most important concept in _modern_ VCSs.
 
-The main reason why git was created is because in svn (the mainstream VCS at the time), the branching mechanism is poorly designed (although it was _good enough_ for that time).
+The main reason why git was created is because in svn (the mainstream VCS at the time), the branching mechanism is poorly designed (although it was _good enough_ for that time). Doing merge beyond very simple ones is tough and complicated.
 
 ---
 
@@ -145,6 +144,13 @@ Branching happens without explicitly branching:
 
 1. different users, same branch
 1. different cloned repos (same user), same branch
+
+![width:480px](./images/branchingWithoutNewBranch.png)
+
+```
+int a = 0;           int a = 0;
+int b = 3;           int b = 4;
+```
 
 ---
 
@@ -218,13 +224,25 @@ Configure the `git lol` __git-alias__ (see & copy from `git_aliases.sh`), your f
 
 For each one of your repos, configure the files to ignore by editting `.gitignore` at the top of your repo. It contains entries such as:
 
-* `output.html` : generated files, out of git
+* `output.html` : generated files, to be kept out of git
 * `build/output/` : build folders
 * `*.o` : typical for C/C++ if no build folder
 * `*.swp` : if you use vim
 
-In github there are ignore templates ready to use when a repo is created.
+In github there are ignore templates ready to use when creating a repo.
 
+---
+
+# configure git prompt
+
+With the git prompt (unlike some GUIs), you can always know _where_ and _how_ you are:
+
+- view your current branch name
+- view your current operation status (are you clean?)
+
+![](./images/gitPrompt.png)
+
+In some tools like _git bash for windows_ it is already configured. If not, _source_ the appropiate bash files as explained in _configure the CLI_.
 
 ---
 
@@ -247,28 +265,17 @@ Not using the graph log view with branches is like typing with half eye instead 
 
 ---
 
-# git prompt
-
-With the git prompt (unlike some GUIs), you can always know _where_ and _how_ you are:
-
-- view your current branch name
-- view your current operation status (are you clean?)
-
-![](./images/gitPrompt.png)
-
----
-
 # GUI log
 
 With _tortoise git_, have always open a _show log_ and a _check for modifications_ windows.
 
-With the CLI, use `git lol` and its aliases (provided and suggested by this training)
+With the CLI, use `git lol` and its aliases (provided and suggested by this training). Type `alias | grep git lo` to see them.
 
 ---
 
 ## avoid HASH, use your HEAD
 
-Each commit is identified by a _unique_ HASH (SHA-1), a computed hexadecimal number, like i.e. `9fe67124046504220c94924a459eeba00b009abd` (which may be abbreviated as `9fe6712`).
+Each commit is identified by a _unique_ HASH (SHA-1), a computed hexadecimal number, like `9fe67124046504220c94924a459eeba00b009abd`, which may be abbreviated as `9fe6712`.
 
 The HASH is computed from the commit diff, the author, date, and several other data.
 
@@ -528,19 +535,24 @@ This means you can _play_ with which subset of your current changes you want to 
 
 ---
 
-![](./images/00_git_index.png)
+# the stash cycle
+
+The picture says it all.
+
+![width:580px](./images/00_git_index.png) all? how about unstaging?
 
 ---
 
 # partial commits
 
-Select _hunks_ (partial commits) with either:
+Select _hunks_ (partial diffs) with either:
 
 * diff viewer, then click _merge_
 * `git add --patch` / restore after commit / editor
 * `git add <file>` instead of `git add -uno`
 
 ---
+
 # unstaging
 
 For _unstaging_ (remove from index/stash), you can either :
@@ -562,13 +574,24 @@ Question for linux fans: Notice the awkward syntax above. What does the '--' sta
 
 ---
 
-# exercise #3
+# exercise #3A
 
 With a diff viewer (kdiff3), select (_cherry pick_) the changes to commit and the changes to discard :
 
 1. edit 1 file in 3 locations, 1 with _bad_ changes
 1. view changes with kdiff3, discard wrong ones (_merge_)
-1. add the 2 sections with 2 separate commits
+1. add the 2 _good_ sections with 2 separate commits
+
+
+---
+
+# exercise #3B
+
+Now using raw CLI:
+
+1. edit 1 file in 3 locations, 1 with _bad_ changes
+1. use `git add --patch` to add/discard
+1. add the 2 _good_ sections with 2 separate commits
 
 
 ---
@@ -659,11 +682,20 @@ Tips:
 
 ---
 
-## git golden rule
+# git golden rule
 
 When collaborating, and your work has been shared, don't cause trouble to your colleagues. They may have started their work after yours.
 
 Therefore, __never__ `push --force` already pushed branches that you have modified. Even if you just changed a title. Well, _never never ..._
+
+
+### alternatives
+
+If you feel the urge to upload your changes to the server (for safety, review, experimental sharing), try one of these:
+
+* create a branch with a clearly _drafty_ name: _joeJunk_
+* if using github, create a draft PR and state in the description it is experimental
+* publish the branch in an unofficial mirror
 
 ---
 
@@ -711,7 +743,7 @@ It can become so painful, that some _branching strategies_ authors (gurus) recom
 
 # the zero-conflict trick
 
-![](./images/mergeConflicts.png)
+![](./images/mergeConflicts.png) do you do this?
 
 
 ---
@@ -764,13 +796,7 @@ Branches divergence and therefore, conflict complexity can be tackled following 
 
 ---
 
-## how to solve merge conflicts
-
-GUI:
-
-* open the conflicted file with kdiff3 (_Edit conflicts_)
-* fix the conflicts (there's no recipe for that)
-* click _resolved_ on the _tortoise git_ GUI (as in SVN)
+# how to solve merge conflicts (CLI)
 
 CLI:
 
@@ -779,9 +805,24 @@ CLI:
 * `git add` on the CLI
 * if in trouble, do `git reset --hard HEAD` / `git merge --abort`
 
-
 ---
 
+# how to solve merge conflicts (GUI)
+
+GUI:
+
+* open the conflicted file with kdiff3 (_Edit conflicts_)
+* fix the conflicts (there's no recipe for that)
+* click _resolved_ on the _tortoise git_ GUI (as in SVN)
+
+### tips to fix merge conflicts
+
+Some tips when merging files after a merge conflict:
+
+* 
+* 
+
+---
 
 <!-- _class: invert -->
 
@@ -854,7 +895,7 @@ It may be in the same disk, in the same computer, in another computer, or in the
 
 The way most teams using git with github work: like svn teams.
 
-![width:340px](./images/repoCentral.png) share only through a central repo
+![width:340px](./images/repoCentral.png) sharing only through a central repo
 
 ---
 
@@ -876,11 +917,13 @@ Note: this is not a github configuration course: keys, permissions, etc.
 
 ---
 
-# set up your own github
+# set up your own 'github'
 
 You don't need github (or similar) to use git and share your work. You can have your own remotes, or your colleagues can and let you use them.
 
-setup permissions: mirrors/github with a generic user
+Just setup a mirrors with a generic user.
+
+No maintenance downtime if in the local network.
 
 ---
 
@@ -893,7 +936,7 @@ Most common operations with remotes:
 * `push` : publish changes (to colleagues or publicly)
 * `pull` : fetch + (automatic) merge/rebase
 
-tip: __don't use__ `git pull` (or at least be careful): it's dangerous - better `fetch` + `merge`/`rebase`
+tip: __don't use__ `git pull`, or at least be careful: it's dangerous, will modify your HEAD - better `fetch` + `merge`/`rebase` after verification
 
 ---
 
@@ -1060,7 +1103,7 @@ For enhanced safety (different HD), create a remote mirror (linux machine only):
 
 On the remote machine:
 
-1. `git init --mirror` : once
+1. `git init --bare` : once
 
 On the local machine:
 
@@ -1140,7 +1183,7 @@ Not covered in this training.
 
 # homework
 
-Don't forget what you have just learned, it will pay off. Practice. Again. Try. Retry: __get fit at git !__
+Don't forget what you have just learned, there's a lot of information. . Practice. Again. Try. Retry. It will pay off: __get fit at git !__
 
 * repeat the exercises
 * do this hands-on online tutorial: https://learngitbranching.js.org/ absolutely recommended!
