@@ -612,6 +612,35 @@ Many svn teams still (have to) use this technique for sharing and reviewing thei
 
 Not covered in this training.
 
+---
+
+<!-- _class: invert -->
+
+# best practices / tips #2
+
+## check your wallet<!-- fit -->
+
+---
+
+# ensure no errors were made
+
+After a merge / rebase / interactive rebase, __ALWAYS__ :
+
+* check that changes are identical or correct: `git diff --name-status <before> [<after>]`
+* if unsure, then use regular `git diff`.
+* more about this on _best practices, tips #4_ (_keep your work safe_).
+* you can of course use a git GUI
+
+---
+
+# set the upstream
+
+Set the branch _upstream_ to avoid specifying the target/source on each command:
+
+`git branch --set-upstream # or -u`
+
+The _upstream_ : default branch where to merge, rebase, push to or pull from.
+
 
 ---
 
@@ -688,24 +717,6 @@ Tips:
 
 ---
 
-# git golden rule
-
-When collaborating, and your work has already been shared, don't cause trouble to your colleagues. They may have started their work after yours.
-
-Therefore, __never__ `push --force` already pushed branches that you have modified. Even if you just changed a title. Well, _never never ..._
-
----
-
-### alternatives
-
-If you feel the urge to upload your changes to the server (for safety, review, experimental sharing), try one of these:
-
-* create a branch with a clearly _drafty_ name: _joeJunk_
-* if using github, create a draft PR and clearly state in the description that it is experimental (use at your own risk)
-* publish the branch in an unofficial mirror
-
----
-
 <!-- _class: invert -->
 
 # exercise #4
@@ -736,7 +747,94 @@ You may have to use `git rebase --abort`.
 
 <!-- _class: invert -->
 
+# best practices / tips #3
+
+## git golden rule<!-- fit -->
+
+---
+
+# git golden rule: never force push
+
+When collaborating, and your work has already been shared, don't cause trouble to your colleagues. They may have started their work after yours.
+
+Therefore, __never__ `push --force` already pushed branches that you have modified. Even if you just changed a title. Well, _never never ..._
+
+---
+
+### alternatives
+
+If you feel the urge to upload your changes to the server (for safety, review, experimental sharing), try one of these:
+
+* create a branch with a clearly _drafty_ name: _joeJunk_
+* if using github, create a draft PR and clearly state in the description that it is experimental (use at your own risk)
+* publish the branch in an unofficial / private mirror
+
+---
+
+<!-- _class: invert -->
+
 # conflict solving<!-- fit -->
+
+---
+
+# how to solve merge conflicts (CLI)
+
+CLI:
+
+* `git mergetool <file>` (`git status` to find out which file)
+* fix the conflicts (there's no recipe for that)
+* `git add` on the CLI
+* if in trouble, do `git reset --hard HEAD` / `git merge --abort`
+
+---
+
+# how to solve merge conflicts (GUI)
+
+GUI:
+
+* open the conflicted file with kdiff3 (_Edit conflicts_)
+* fix the conflicts (there's no recipe for that)
+* click _resolved_ on the _tortoise git_ GUI (as in SVN)
+
+### tips to fix merge conflicts
+
+Some tips when merging files after a merge conflict:
+
+* 
+* 
+
+---
+
+<!-- _class: invert -->
+
+# exercise #5
+
+# fix a merge conflict<!-- fit -->
+
+---
+
+# create a merge conflict
+
+Cause a merge conflict by:
+
+* create 2 branches (or 2 people work in the same branch, then push/pull)
+* edit the same line with different content
+* commit, then merge / commit + push, fetch (2 people)
+
+---
+
+# fix it
+
+* with the GUI
+* with the CLI
+
+---
+
+<!-- _class: invert -->
+
+# best practices / tips #4
+
+## avoid merge conflicts<!-- fit -->
 
 ---
 
@@ -800,88 +898,6 @@ Branches diverge exponentially with time, not linearly
 ![width:880px](./images/branchDivergence.png)
 
 Branches divergence and therefore, conflict complexity can be tackled following the social tips.
-
----
-
-# how to solve merge conflicts (CLI)
-
-CLI:
-
-* `git mergetool <file>` (`git status` to find out which file)
-* fix the conflicts (there's no recipe for that)
-* `git add` on the CLI
-* if in trouble, do `git reset --hard HEAD` / `git merge --abort`
-
----
-
-# how to solve merge conflicts (GUI)
-
-GUI:
-
-* open the conflicted file with kdiff3 (_Edit conflicts_)
-* fix the conflicts (there's no recipe for that)
-* click _resolved_ on the _tortoise git_ GUI (as in SVN)
-
-### tips to fix merge conflicts
-
-Some tips when merging files after a merge conflict:
-
-* 
-* 
-
----
-
-<!-- _class: invert -->
-
-# exercise #5
-
-# fix a merge conflict<!-- fit -->
-
----
-
-# create a merge conflict
-
-Cause a merge conflict by:
-
-* create 2 branches (or 2 people work in the same branch, then push/pull)
-* edit the same line with different content
-* commit, then merge / commit + push, fetch (2 people)
-
----
-
-# fix it
-
-* with the GUI
-* with the CLI
-
----
-
-<!-- _class: invert -->
-
-# best practices / tips #2
-
-## check your wallet<!-- fit -->
-
----
-
-# ensure no errors were made
-
-After a merge / rebase / interactive rebase, __ALWAYS__ :
-
-* check that changes are identical or correct: `git diff --name-status <before> [<after>]`
-* if unsure, then use regular `git diff`.
-* more about this on _best practices, tips #4_ (_keep your work safe_).
-* you can of course use a git GUI
-
----
-
-# set the upstream
-
-Set the branch _upstream_ to avoid specifying the target/source on each command:
-
-`git branch --set-upstream # or -u`
-
-The _upstream_ : default branch where to merge, rebase, push to or pull from.
 
 ---
 
@@ -1027,7 +1043,7 @@ Not covered in this training.
 
 <!-- _class: invert -->
 
-# best practices / tips #3
+# best practices / tips #5
 
 # merge vs rebase & cleanup
 
@@ -1061,7 +1077,7 @@ My personal take:
 
 <!-- _class: invert -->
 
-# best practices / tips #4
+# best practices / tips #6
 
 ## keep your work safe<!-- fit -->
 
@@ -1121,7 +1137,7 @@ On the local machine:
 
 <!-- _class: invert -->
 
-# best practices / tips #5
+# best practices / tips #7
 
 ## disaster recovery<!-- fit -->
 
@@ -1142,7 +1158,7 @@ Not covered in this training.
 
 <!-- _class: invert -->
 
-# best practices / tips #6
+# best practices / tips #8
 
 ## for svn users<!-- fit -->
 
