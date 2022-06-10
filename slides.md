@@ -31,7 +31,7 @@ Marc Gonzalez-Carnicer `gomr@betterask.erni`
 
 The world's most used VCS. Conceived by Linus Torvalds, who lacked a tool to manage the linux kernel contributions.
 
-Very powerful & efficient, though not very intuitive for beginners. Therefore, it can be dangerous to use without the proper knowledge & practice.
+Very powerful & efficient, though not very intuitive for beginners. Therefore, without the proper knowledge & practice it __can be dangerous__.
 
 ![bg right 56%](./images/gitComplicatedXKCD.png)
 
@@ -41,12 +41,12 @@ Very powerful & efficient, though not very intuitive for beginners. Therefore, i
 
 This training:
 
-* is about _getting fit at git_
+* is about _getting fit at git_ (not a complete reference)
 * contains _tips_ & _best practices_
 * has very easy exercises (too easy?)
 * covers the very basics (too obvious?) and fundamentals
-* some contents and exercises may be skipped (depending on your previous knowledge)
-* it's long, with probably too much information - you may do / read it at home
+* some contents and exercises may be skipped (depending on your previous knowledge): let the trainer know
+* it's long (too much information?) - you may do / read it at home
 
 ---
 
@@ -86,7 +86,7 @@ Where everything is stored.
 
 history is a graph: nodes + lines
 
-* graph nodes : commits - are diffs / patches / deltas
+* graph nodes (commits) : are diffs / patches / deltas
 * graph lines (between nodes) : define ancestry (parent)
 * strictly speaking, the arrow direction in git graphs indicate the parent, not the time or progress
 
@@ -121,7 +121,9 @@ The main reason why git was created is because in svn (the mainstream VCS at the
 
 # branching vs git branch
 
-A _git branch_ does __not__ imply a _bifurcation_, as in a tree:
+A _git branch_ does __not__ imply a _bifurcation_, as in a tree.
+
+In git, branching (bifurcation) is allowed thanks to _git branches_.
 
 ![width:340px](./images/treeBranch.png) Humans think of branches as the ones in a tree.
 
@@ -129,9 +131,7 @@ A _git branch_ does __not__ imply a _bifurcation_, as in a tree:
 
 # branching vs git branch
 
-A _git branch_ is a _reference_ that points to a commit.
-
-In git, branching (bifurcation) is allowed thanks to _git branches_.
+A _git branch_ is a _label_ or _reference_ that points to a commit.
 
 ![width:240px](./images/branch_not_branching_22_rebaseKeep.png) Here we see 3 _git branches_ and only 2 _bifurcations_.
 
@@ -140,17 +140,17 @@ In git, branching (bifurcation) is allowed thanks to _git branches_.
 
 # branching without branch
 
-Branching happens without explicitly branching:
+Branching happens all the time, even without explicitly creating branches. For example:
 
 1. different users, same branch
 1. different cloned repos (same user), same branch
 
-![width:480px](./images/branchingWithoutNewBranch.png)
-
 ```
 int a = 0;           int a = 0;
-int b = 3;           int b = 4;
+int b = 3;  <= ! =>  int b = 4;
 ```
+
+![width:480px](./images/branchingWithoutNewBranch.png)
 
 ---
 
@@ -185,8 +185,10 @@ Reminder: git was designed for being able to remove unused work. Downside: begin
 
 ## CLI or GUI?
 
+This is a recurrent debate: what is best, using a GUI or the CLI?
+
 * a minimum proficiency of the CLI (Command Line Interface) will always be necessary
-* a hybrid method is best - choose depending on your preferences / GUI tool
+* a hybrid method is best: choose what you do with one or another, depending on your preferences or GUI tool
 
 ---
 
@@ -302,7 +304,7 @@ The `HEAD` refers to the __commit__ where the currently _checked-out branch_ is 
 
 This exercise is about using the _git log graph_ to see history and diffs, between commits and between branches
 
-### get the repo
+### grab a repo
 
 Clone the demo repo:
 
@@ -381,10 +383,12 @@ Is there any one of these commands you don't know? Just ask.
 
 # merge vs rebase
 
-Merge & rebase are 2 ways of integrating 2 branches together:
+Merge & rebase are different ways of integrating 2 git branches together:
 
-* merge : creates a __new__ _merge commit_
-* rebase : __moves__ the branch commits __to__ a _new base_
+* merge (__into__) : __creates__ a _new merge commit_
+* rebase : __moves__ the commits __onto__ a _new base_
+* both have a _direction_
+* produce same output (files)
 
 ![bg right 60%](./images/MergeVsRebase.png)
 
@@ -402,14 +406,16 @@ Integration: process of bringing changes together.
 
 In the following example the _git integration commands_ (`checkout`, `reset`, `merge`, `rebase` ...) are used.
 
-In the exercise, you will have to replicate this example. __IMPORTANT__: You _don't have to remember_, but _understand_ instead.
+In the exercise, you will have to replicate this example.
+
+__IMPORTANT__: You _don't have to remember_, but instead _understand_ what is being done.
 
 ---
 
 ### initial situation
 
 * 3 branches: _main_ (`HEAD`), _line4_, _line9_
-* 2 actual bifurcations
+* 2 bifurcations
 
 ![](./images/10_branch0.png)
 
@@ -539,7 +545,7 @@ This means you can _play_ with which subset of your current changes you want to 
 
 The picture says it all.
 
-![width:580px](./images/00_git_index.png) all? how about unstaging?
+![width:580px](./images/00_git_index.png) all? how about _unstaging_?
 
 ---
 
@@ -602,7 +608,38 @@ It is also possible to select changes _the old way_, with `git diff` (or `git fo
 
 That's how the _linux kernel_ was developed when the project was sacked from a commercial VCSs for license infringement. That led to the implementation of git.
 
+Many svn teams still (have to) use this technique for sharing and reviewing their work.
+
 Not covered in this training.
+
+---
+
+<!-- _class: invert -->
+
+# best practices / tips #2
+
+## check your wallet<!-- fit -->
+
+---
+
+# ensure no errors were made
+
+After a merge / rebase / interactive rebase, __ALWAYS__ :
+
+* check that changes are identical or correct: `git diff --name-status <before> [<after>]`
+* if unsure, then use regular `git diff`.
+* more about this on _best practices, tips #4_ (_keep your work safe_).
+* you can of course use a git GUI
+
+---
+
+# set the upstream
+
+Set the branch _upstream_ to avoid specifying the target/source on each command:
+
+`git branch --set-upstream # or -u`
+
+The _upstream_ : default branch where to merge, rebase, push to or pull from.
 
 
 ---
@@ -663,8 +700,6 @@ pick a2b1c037f9 typo fixing the bug
 # If you remove a line here THAT COMMIT WILL BE LOST.
 #
 # However, if you remove everything, the rebase will be aborted.
-#
-
 ```
 
 ---
@@ -679,23 +714,6 @@ Tips:
 * with the CLI, use `git reset HEAD~` to edit the commit contents
 * when rebasing many commits, don't do them all at once (simplify)
 * do backups of your latest _good_ branch
-
----
-
-# git golden rule
-
-When collaborating, and your work has been shared, don't cause trouble to your colleagues. They may have started their work after yours.
-
-Therefore, __never__ `push --force` already pushed branches that you have modified. Even if you just changed a title. Well, _never never ..._
-
-
-### alternatives
-
-If you feel the urge to upload your changes to the server (for safety, review, experimental sharing), try one of these:
-
-* create a branch with a clearly _drafty_ name: _joeJunk_
-* if using github, create a draft PR and state in the description it is experimental
-* publish the branch in an unofficial mirror
 
 ---
 
@@ -729,7 +747,94 @@ You may have to use `git rebase --abort`.
 
 <!-- _class: invert -->
 
+# best practices / tips #3
+
+## git golden rule<!-- fit -->
+
+---
+
+# git golden rule: never force push
+
+When collaborating, and your work has already been shared, don't cause trouble to your colleagues. They may have started their work after yours.
+
+Therefore, __never__ `push --force` already pushed branches that you have modified. Even if you just changed a title. Well, _never never ..._
+
+---
+
+### alternatives
+
+If you feel the urge to upload your changes to the server (for safety, review, experimental sharing), try one of these:
+
+* create a branch with a clearly _drafty_ name: _joeJunk_
+* if using github, create a draft PR and clearly state in the description that it is experimental (use at your own risk)
+* publish the branch in an unofficial / private mirror
+
+---
+
+<!-- _class: invert -->
+
 # conflict solving<!-- fit -->
+
+---
+
+# how to solve merge conflicts (CLI)
+
+CLI:
+
+* `git mergetool <file>` (`git status` to find out which file)
+* fix the conflicts (there's no recipe for that)
+* `git add` on the CLI
+* if in trouble, do `git reset --hard HEAD` / `git merge --abort`
+
+---
+
+# how to solve merge conflicts (GUI)
+
+GUI:
+
+* open the conflicted file with kdiff3 (_Edit conflicts_)
+* fix the conflicts (there's no recipe for that)
+* click _resolved_ on the _tortoise git_ GUI (as in SVN)
+
+### tips to fix merge conflicts
+
+Some tips when merging files after a merge conflict:
+
+* 
+* 
+
+---
+
+<!-- _class: invert -->
+
+# exercise #5
+
+# fix a merge conflict<!-- fit -->
+
+---
+
+# create a merge conflict
+
+Cause a merge conflict by:
+
+* create 2 branches (or 2 people work in the same branch, then push/pull)
+* edit the same line with different content
+* commit, then merge / commit + push, fetch (2 people)
+
+---
+
+# fix it
+
+* with the GUI
+* with the CLI
+
+---
+
+<!-- _class: invert -->
+
+# best practices / tips #4
+
+## avoid merge conflicts<!-- fit -->
 
 ---
 
@@ -796,87 +901,6 @@ Branches divergence and therefore, conflict complexity can be tackled following 
 
 ---
 
-# how to solve merge conflicts (CLI)
-
-CLI:
-
-* `git mergetool <file>` (`git status` to find out which file)
-* fix the conflicts (there's no recipe for that)
-* `git add` on the CLI
-* if in trouble, do `git reset --hard HEAD` / `git merge --abort`
-
----
-
-# how to solve merge conflicts (GUI)
-
-GUI:
-
-* open the conflicted file with kdiff3 (_Edit conflicts_)
-* fix the conflicts (there's no recipe for that)
-* click _resolved_ on the _tortoise git_ GUI (as in SVN)
-
-### tips to fix merge conflicts
-
-Some tips when merging files after a merge conflict:
-
-* 
-* 
-
----
-
-<!-- _class: invert -->
-
-# exercise #5
-
-# fix a merge conflict<!-- fit -->
-
----
-
-# create a merge conflict
-
-Cause a merge conflict by:
-
-* create 2 branches (or 2 people work in the same branch, then push/pull)
-* edit the same line with different content
-* commit, then merge / commit + push, fetch (2 people)
-
----
-
-# fix it
-
-* with the GUI
-* with the CLI
-
----
-
-<!-- _class: invert -->
-
-# best practices / tips #2
-
-## check your wallet<!-- fit -->
-
----
-
-# ensure no errors were made
-
-After a merge / rebase / interactive rebase, __ALWAYS__ :
-
-* check with `git diff --name-status` that changes are identical or correct
-* if unsure, then use regular `git diff`.
-* more about this on _best practices, tips #4_.
-
----
-
-# set the upstream
-
-Set the branch _upstream_ to avoid specifying the target/source on each command:
-
-`git branch --set-upstream # or -u`
-
-The _upstream_ : default branch where to merge, rebase, push to or pull from.
-
----
-
 <!-- _class: invert -->
 
 # remotes<!-- fit -->
@@ -919,11 +943,11 @@ Note: this is not a github configuration course: keys, permissions, etc.
 
 # set up your own 'github'
 
-You don't need github (or similar) to use git and share your work. You can have your own remotes, or your colleagues can and let you use them.
+You don't need github (or similar) to use git and share your work. You can have your own remotes, or your colleagues can let you use them.
 
-Just setup a mirrors with a generic user.
+Just setup a shared remote mirror (`git clone --mirror`) with a generic user.
 
-No maintenance downtime if in the local network.
+Faster, no network downtime, etc if located in the local network. But no fancy features.
 
 ---
 
@@ -966,6 +990,7 @@ Discover the 3 `git reset` options with the exercise:
 - mixed reset
 - soft reset (like `git update-ref`)
 
+The difference between options has to do on how the _stash_ and the files are left: modified, added, etc.
 
 ---
 
@@ -995,12 +1020,10 @@ Discover the 3 `git reset` options with the exercise:
 
 With the CLI (not with tortoise), do:
 
-* make a _backup branch_ of the current HEAD with `git branch backup` (dont check it out)
-
+* make a _backup branch_: `git branch backup` (don't checkout it!)
 * `git reset --soft HEAD~`
 * check what happened
 * `git reset --hard backup`
-
 * `git reset HEAD~ # like --mixed`
 * check what happened
 * `git reset --hard backup`
@@ -1020,7 +1043,7 @@ Not covered in this training.
 
 <!-- _class: invert -->
 
-# best practices / tips #3
+# best practices / tips #5
 
 # merge vs rebase & cleanup
 
@@ -1054,7 +1077,7 @@ My personal take:
 
 <!-- _class: invert -->
 
-# best practices / tips #4
+# best practices / tips #6
 
 ## keep your work safe<!-- fit -->
 
@@ -1114,7 +1137,7 @@ On the local machine:
 
 <!-- _class: invert -->
 
-# best practices / tips #5
+# best practices / tips #7
 
 ## disaster recovery<!-- fit -->
 
@@ -1135,7 +1158,7 @@ Not covered in this training.
 
 <!-- _class: invert -->
 
-# best practices / tips #6
+# best practices / tips #8
 
 ## for svn users<!-- fit -->
 
@@ -1160,18 +1183,21 @@ The git UI (its commands) do not have a reputation for being intuitive. Same act
 - `git checkout` / `svn switch`
 - `git pull --rebase` / `svn update`
 - `git commit` / `svn diff >/tmp/mySafepoint1.patch`
+- `git checkout --` / `svn revert # not git revert!`
 - `git push` / `svn commit`
 - ...
 
 ---
 
-# gitless
+# simplified git UIs
 
 Confused with the git CLI complexity? You may try
 
-https://gitless.com/
+https://gitless.com/ (not covered in this training).
 
-Not covered in this training.
+TFS and other GUIs also offer a simplified _user interface_.
+
+The drawback is that the user is not really aware of what happens beneath the commands.
 
 ---
 
@@ -1183,7 +1209,7 @@ Not covered in this training.
 
 # homework
 
-Don't forget what you have just learned, there's a lot of information. . Practice. Again. Try. Retry. It will pay off: __get fit at git !__
+Don't forget what you have just learned today (lots of information). Practice. Again. Read. Try. Retry. It will pay off: __get fit at git !__
 
 * repeat the exercises
 * do this hands-on online tutorial: https://learngitbranching.js.org/ absolutely recommended!
