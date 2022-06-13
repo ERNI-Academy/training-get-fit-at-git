@@ -122,7 +122,7 @@ Algebraically, a node (diff / delta / patch) is defined as:
 
 `[ contents of commit2 ]` - `[ contents of commit1 ]`
 
-`patch` and `diff` are the _conceptual base_ beneath git. They are linux commands since prehistoric times.
+`patch` and `diff` are the _conceptual base_ beneath git. They are UNIX commands since prehistoric times: https://en.wikipedia.org/wiki/Diff
 
 
 ---
