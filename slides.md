@@ -17,9 +17,9 @@ theme: gaia
 
 ### hands-on git beginners training
 
-* curated & distilled know-how
-* with exercises, best practices & tips
-* direct feedback
+- curated & distilled know-how
+- with exercises, best practices & tips
+- direct feedback
 
 Marc Gonzalez-Carnicer `gomr@betterask.erni`
 
@@ -37,20 +37,32 @@ Very powerful & efficient, though not very intuitive for beginners. Therefore, w
 
 ---
 
+# is git dangerous?<!-- fit -->
+
+[ __recent__ online ad ]
+
+Apparently, people can lose valuable code not only with _raw git_, but also using _git protection wrappers_ such as github.
+
+![bg right 40%](./images/githubLost.png)
+
+---
+
 # introduction
 
 This training:
 
-* is about _getting fit at git_ (not a complete reference)
+* is about _getting fit at git_ (__not__ a complete reference)
 * contains _tips_ & _best practices_
-* has very easy exercises (too easy?)
+* requires you to do exercises (too easy?)
 * covers the very basics (too obvious?) and fundamentals
 * some contents and exercises may be skipped (depending on your previous knowledge): let the trainer know
 * it's long (too much information?) - you may do / read it at home
 
 ---
 
-### tell us about:
+### custom training 
+
+In order to better customize this training, tell us about:
 
 * your experience with git (and other VCSs)
 * what you can do with git
@@ -69,26 +81,30 @@ This training:
 
 ## repository
 
-Where everything is stored.
+Where _everything_ is stored. There are 2 types of repositories:
 
-* normal: contains files & history
-* bare: only the history
+* regular: contains both _files_ & _history_
+* bare: only the _history_ (the contents of the `.git` folder)
 
 # distributed
 
-* git is a distributed VCS
-* clones (repository copies) contain all the history
+* git is a distributed VCS, it can be used off-line
+* clones (repository copies) contain __ALL__ the history
 * (unlike in a centralized VCS like svn)
 
 ---
 
 # git log (history)
 
-history is a graph: nodes + lines
+The log is the repo history. It is a graph formed of nodes + lines.
 
 * graph nodes (commits) : are diffs / patches / deltas
 * graph lines (between nodes) : define ancestry (parent)
-* strictly speaking, the arrow direction in git graphs indicate the parent, not the time or progress
+
+Tips:
+
+* strictly speaking, the arrow direction in git graphs indicate the parent (not the time or progress)
+* even if you follow the simple _no-branches_ branching strategy, you still need to use and __visualize__ the log.
 
 ---
 
@@ -111,11 +127,21 @@ Algebraically, a node (diff / delta / patch) is defined as:
 
 ---
 
+# what is a patch?
+
+A patch is the substraction of 2 (text) file sets. Therefore, like files, it is composed of lines. Both _negative_ (removed) and _positive_ (added).
+
+![width:980px](./images/diffPatch.png)
+
+Patches also contain information about files.
+
+---
+
 # branch
 
 The most important concept in _modern_ VCSs.
 
-The main reason why git was created is because in svn (the mainstream VCS at the time), the branching mechanism is poorly designed (although it was _good enough_ for that time). Doing merge beyond very simple ones is tough and complicated.
+The main reason why git was created is because in svn (the mainstream VCS at the time), the branching (& merge) mechanism is poorly designed (although it was _good enough_ for that time). Merging with svn beyond very simple use cases is tough and complicated.
 
 ---
 
@@ -140,14 +166,14 @@ A _git branch_ is a _label_ or _reference_ that points to a commit.
 
 # branching without branch
 
-Branching happens all the time, even without explicitly creating branches. For example:
+Branching happens as soon as a file is modified. Regardless of using git or any other VCS, or without explicitly creating branches:
 
-1. different users, same branch
-1. different cloned repos (same user), same branch
+1. different users, _same branch_
+1. same user, different repos, _same branch_
 
 ```
-int a = 0;           int a = 0;
-int b = 3;  <= ! =>  int b = 4;
+int a = 0;           int a = 0;    |  <=   int a = 0;
+int b = 3;  <= ! =>  int b = 4;    |  <=   int b = 1;
 ```
 
 ![width:480px](./images/branchingWithoutNewBranch.png)
@@ -156,12 +182,14 @@ int b = 3;  <= ! =>  int b = 4;
 
 # no branch no commits
 
-Commits without a _git branch_ are deleted / lost.
+Commits without a _git branch_ are deleted / lost. Therefore:
 
-* ensure your commits have a branch (or reference)
+* ensure your valuable commits have a branch (or reference)
 * delete a branch to get rid of useless commits
 
-Reminder: git was designed for being able to remove unused work. Downside: beginners may lose valuable work.
+Reminder: git was designed to being able of removing _unused work_.
+
+Downside: beginners (or not so beginners) may lose _valuable work_.
 
 ---
 
@@ -175,6 +203,8 @@ Reminder: git was designed for being able to remove unused work. Downside: begin
 
 # download the tools
 
+For this training, the chosen tools in windows are _tortoise git_ (old, svn-themed client for windows) and kdiff3 (old, simple but efficient). Feel free to suggest or use better tools (no support guaranteed).
+
 1. download and install kdiff3: https://download.kde.org/stable/kdiff3/
 
 1. download and install tortoise git: https://tortoisegit.org/download/
@@ -187,8 +217,8 @@ Reminder: git was designed for being able to remove unused work. Downside: begin
 
 This is a recurrent debate: what is best, using a GUI or the CLI?
 
-* a minimum proficiency of the CLI (Command Line Interface) will always be necessary
-* a hybrid method is best: choose what you do with one or another, depending on your preferences or GUI tool
+* a __minimum proficiency__ of the CLI (Command Line Interface) will always be necessary
+* a __hybrid method__ is indeed _best_: choose what you do with one or another, depending on your preferences and your GUI tool
 
 ---
 
@@ -222,7 +252,7 @@ Configure the `git lol` __git-alias__ (see & copy from `git_aliases.sh`), your f
 
 ---
 
-# configure files to ignore
+# configure the files to ignore
 
 For each one of your repos, configure the files to ignore by editting `.gitignore` at the top of your repo. It contains entries such as:
 
@@ -231,13 +261,13 @@ For each one of your repos, configure the files to ignore by editting `.gitignor
 * `*.o` : typical for C/C++ if no build folder
 * `*.swp` : if you use vim
 
-In github there are ignore templates ready to use when creating a repo.
+In github there are convenient ready-to-use _ignore templates_, offered when a repo is created.
 
 ---
 
-# configure git prompt
+# configure the CLI git prompt
 
-With the git prompt (unlike some GUIs), you can always know _where_ and _how_ you are:
+The CLI _git prompt_ is __very useful__, even required. With it (unlike with some GUIs), you can always know _where_ and _how_ you are:
 
 - view your current branch name
 - view your current operation status (are you clean?)
@@ -254,7 +284,7 @@ In some tools like _git bash for windows_ it is already configured. If not, _sou
 
 ---
 
-# understand the log
+# use & understand the log
 
 Identify in a git graph (refer to previous slide with graph or to upcoming _exercise #1_):
 
@@ -275,11 +305,13 @@ With the CLI, use `git lol` and its aliases (provided and suggested by this trai
 
 ---
 
-## avoid HASH, use your HEAD
+## use your HEAD: avoid HASH
 
-Each commit is identified by a _unique_ HASH (SHA-1), a computed hexadecimal number, like `9fe67124046504220c94924a459eeba00b009abd`, which may be abbreviated as `9fe6712`.
+Many git operations require specifying at least a commit as parameter.
 
-The HASH is computed from the commit diff, the author, date, and several other data.
+Commits are identified by a _unique_ HASH (SHA-1), a long hexadecimal number, like `9fe67124046504220c94924a459eeba00b009abd`, which may be abbreviated as `9fe6712`.
+
+Commit hashes are computed from the commit diff, the author, date, and several other data.
 
 ---
 
@@ -288,7 +320,8 @@ The HASH is computed from the commit diff, the author, date, and several other d
 The `HEAD` refers to the __commit__ where the currently _checked-out branch_ is pointing to.
 
 * tip : refer to commits using relative `HEAD` positions, instead of HASH (hard to memorize and type)
-* examples: `HEAD~6, HEAD~2, HEAD~1 (= HEAD~), HEAD^1, HEAD^2`
+* examples: `HEAD~6`, `HEAD~2`, `HEAD~1` (= `HEAD~`), `HEAD^1`, `HEAD^2`
+* references to other branch names (local or remote) may also be used instead (i.e. `github/feature12`)
 
 ----
 
@@ -304,7 +337,7 @@ The `HEAD` refers to the __commit__ where the currently _checked-out branch_ is 
 
 This exercise is about using the _git log graph_ to see history and diffs, between commits and between branches
 
-### grab a repo
+#### grab a repo
 
 Clone the demo repo:
 
@@ -315,7 +348,7 @@ For this exercise, you can also clone or use your favorite git repo.
 
 ---
 
-# GUI :
+# git log with the GUI
 
 Using the GUI :
 
@@ -327,7 +360,7 @@ Using the GUI :
 
 ---
 
-# CLI
+# git log with the CLI
 
 Using the CLI:
 
@@ -340,9 +373,9 @@ Using the CLI:
 
 # diffs with the CLI
 
-* view diffs between 2 commits, practice diff ref formats: `HEAD~2`, `..HEAD~2`, `..branch`, `branch2..commit1`, ...
+* view diffs between 2 commits, practice diff reference formats: `HEAD~2`, `..HEAD~2`, `..branch`, `branch2..commit1`, ...
 * use also `git difftool` (complicated with _git bash for windows_)
-* use `git diff --name-status` between 2 commits to see changed files
+* use `git diff --name-status` between 2 commits to see __only__ the changed files (screen not flooded)
 * checkout to different branches
 
 ---
@@ -383,11 +416,11 @@ Is there any one of these commands you don't know? Just ask.
 
 # merge vs rebase
 
-Merge & rebase are different ways of integrating 2 git branches together:
+Merge & rebase are different ways of _integrating_ 2 git branches together:
 
 * merge (__into__) : __creates__ a _new merge commit_
 * rebase : __moves__ the commits __onto__ a _new base_
-* both have a _direction_
+* both cmds have a _direction_
 * produce same output (files)
 
 ![bg right 60%](./images/MergeVsRebase.png)
@@ -404,7 +437,7 @@ Merge & rebase are different ways of integrating 2 git branches together:
 
 Integration: process of bringing changes together.
 
-In the following example the _git integration commands_ (`checkout`, `reset`, `merge`, `rebase` ...) are used.
+In the following example the basic _git integration commands_ (`checkout`, `reset`, `merge`, `rebase` ...) are used.
 
 In the exercise, you will have to replicate this example.
 
@@ -425,7 +458,7 @@ __IMPORTANT__: You _don't have to remember_, but instead _understand_ what is be
 ### hard reset
 
 * checkout _main_ branch
-* reset of _main_ branch __to__ _line4_ branch
+* reset (hard) of _main_ branch __to__ _line4_ branch
 
 ![](./images/11_resetHard.png)
 
@@ -433,7 +466,9 @@ __IMPORTANT__: You _don't have to remember_, but instead _understand_ what is be
 
 ### merge
 
-_line9_ branch is merged __into__ _main_ branch
+* right-click on _line9_
+* select _Merge_
+* _line9_ branch is merged __into__ _main_ branch
 
 ![](./images/12_merge.png)
 
@@ -445,7 +480,7 @@ Now with rebase. First, let's get back to the previous situation.
 
 * select branch _line4_
 * reset (_main_ branch) __to__ _line4_ branch
-* notice: the tool _remembers_ the branch-less merge
+* notice: the tool _remembers_ the branch-less merge commit
 
 ![](./images/13_resetHard2.png)
 
@@ -456,7 +491,7 @@ Now with rebase. First, let's get back to the previous situation.
 
 * add a _backup branch_ to avoid _forgetting_ the merge
 * _main_ branch is rebased __onto__ _line9_ branch
-* _line4_ branch is _not forgotten_ (it has a reference)
+* _line4_ branch is _not forgotten_ by now (it has a reference)
 
 ![](./images/15_rebaseWithBackup.png)
 
@@ -476,7 +511,7 @@ Now with rebase. First, let's get back to the previous situation.
 
 ### delete merge branch
 
-Delete the _merge branch_ (not necessary).
+Delete the _merge branch_. Fear not, it is not necessary anymore.
 
 ![](./images/22_rebaseKeep.png)
 
@@ -484,7 +519,7 @@ Delete the _merge branch_ (not necessary).
 
 ### delete rebased old branch
 
-Delete the already rebased _line4 branch_ (not necessary).
+Delete the already rebased _line4 branch_ too. Remember: git was designed to be able to _delete_ unvaluable work.
 
 ![](./images/20_rebaseDelete.png)
 
@@ -519,8 +554,8 @@ Force a _no fast-forward_ merge with `--no-ff` (checkbox).
 
 Replicate the examples in the previous section :
 
-* with tortoise git
-* with the CLI
+1. with tortoise git
+1. with the CLI
 
 
 ---
@@ -582,7 +617,7 @@ Question for linux fans: Notice the awkward syntax above. What does the '--' sta
 
 # exercise #3A
 
-With a diff viewer (kdiff3), select (_cherry pick_) the changes to commit and the changes to discard :
+With a diff viewer (kdiff3), select the changes to commit and the changes to discard (this is the _cherry picking_ concept):
 
 1. edit 1 file in 3 locations, 1 with _bad_ changes
 1. view changes with kdiff3, discard wrong ones (_merge_)
@@ -606,9 +641,9 @@ Now using raw CLI:
 
 It is also possible to select changes _the old way_, with `git diff` (or `git format-patch`), then `git am` or `git apply`.
 
-That's how the _linux kernel_ was developed when the project was sacked from a commercial VCSs for license infringement. That led to the implementation of git.
+That's how the _linux kernel_ was developed when the project was sacked from a commercial VCSs for license infringement. That led Linus Torvalds to implement git.
 
-Many svn teams still (have to) use this technique for sharing and reviewing their work.
+Many svn teams still (have to) use the _patch technique_ for sharing and reviewing their work.
 
 Not covered in this training.
 
@@ -627,9 +662,10 @@ Not covered in this training.
 After a merge / rebase / interactive rebase, __ALWAYS__ :
 
 * check that changes are identical or correct: `git diff --name-status <before> [<after>]`
-* if unsure, then use regular `git diff`.
-* more about this on _best practices, tips #4_ (_keep your work safe_).
-* you can of course use a git GUI
+* if unsure, then use regular `git diff` (or a git GUI)
+* more about this on _best practices, tips #4_ (_keep your work safe_)
+
+![width:760px](./images/diffFiles.png)
 
 ---
 
@@ -639,7 +675,7 @@ Set the branch _upstream_ to avoid specifying the target/source on each command:
 
 `git branch --set-upstream # or -u`
 
-The _upstream_ : default branch where to merge, rebase, push to or pull from.
+The _upstream_ : __default__ branch where to merge, rebase, push to or pull from. See also the concept of _tracking branch_.
 
 
 ---
@@ -655,12 +691,12 @@ The _upstream_ : default branch where to merge, rebase, push to or pull from.
 
 Ever regretted a commit title, too many commits, etc? 
 
-Nevermind, you __can change history__ :
+Nevermind, __you can change history__ :
 
-- `git commit --amend`
-- `git reset [--hard] HEAD~` (be careful!)
-- also with the GUI
-- but the killer tool is ...
+* `git commit --amend`
+* `git reset [--hard] HEAD~` (be careful!)
+* also possible using the GUI
+* but the killer tool is ...
 
 ---
 
@@ -683,8 +719,8 @@ Allows you to do this with your commits :
 
 ```
 pick d1b17a3c6b fix the bug
-pick d93d254929 add method B::m
-pick a2b1c037f9 typo fixing the bug
+pick d93d254929 create ChildrenClass::getData method
+pick a2b1c037f9 remove typo when fixing the bug
 
 # Rebase f03867c185..a2b1c037f9 onto f03867c185 (3 commands)
 #
@@ -709,7 +745,7 @@ pick a2b1c037f9 typo fixing the bug
 * GUI: select commit from where you want to rebase, then tick the _force rebase_ checkbox
 * CLI: select _from where_ to change with `HEAD~<n>`.
 
-Tips:
+tips:
 
 * with the CLI, use `git reset HEAD~` to edit the commit contents
 * when rebasing many commits, don't do them all at once (simplify)
@@ -757,15 +793,15 @@ You may have to use `git rebase --abort`.
 
 When collaborating, and your work has already been shared, don't cause trouble to your colleagues. They may have started their work after yours.
 
-Therefore, __never__ `push --force` already pushed branches that you have modified. Even if you just changed a title. Well, _never never ..._
+Therefore, __never__ `push --force` already pushed branches (modified afterwards). Even if you just changed a title. Well, _never never ..._
 
 ---
 
 ### alternatives
 
-If you feel the urge to upload your changes to the server (for safety, review, experimental sharing), try one of these:
+If you feel the urge to upload your _drafty_ changes to the server (for safety, review, experimental sharing), and you know these will be heavily modified / tuned __afterwards__, try one of these:
 
-* create a branch with a clearly _drafty_ name: _joeJunk_
+* create a branch with a clearly _drafty_ name (i.e. _joeJunk_)
 * if using github, create a draft PR and clearly state in the description that it is experimental (use at your own risk)
 * publish the branch in an unofficial / private mirror
 
@@ -800,8 +836,8 @@ GUI:
 
 Some tips when merging files after a merge conflict:
 
-* 
-* 
+* ...
+* ...
 
 ---
 
@@ -840,9 +876,11 @@ Cause a merge conflict by:
 
 # conflict solving
 
-Conflict solving is not git-exclusive, other VCSs require to do it. It may be a painful experience.
+Conflict solving is not a git-exclusive _feature_, many other VCSs require to do it too. It may be a painful experience.
 
 It can become so painful, that some _branching strategies_ authors (gurus) recommend one or another with the sole objective of minimizing them.
+
+This section presents tips to avoid or minimize merge conflicts.
 
 ---
 
@@ -897,7 +935,7 @@ Branches diverge exponentially with time, not linearly
 
 ![width:880px](./images/branchDivergence.png)
 
-Branches divergence and therefore, conflict complexity can be tackled following the social tips.
+Branch divergence and therefore, conflict complexity, can be tackled following the social tips.
 
 ---
 
@@ -913,9 +951,11 @@ A remote is a _clone_ of the repo you are working with. Or, your repo may be a c
 
 It may be in the same disk, in the same computer, in another computer, or in the cloud (i.e. github).
 
+With git, teams can choose which _remote configuration_ they want to use. Let's see:
+
 ---
 
-# centralized repo
+# centralized configuration
 
 The way most teams using git with github work: like svn teams.
 
@@ -923,9 +963,9 @@ The way most teams using git with github work: like svn teams.
 
 ---
 
-# distributed repo
+# distributed configuration
 
-A non-centralized way of working. Each repo can be assigned a different role or to a person.
+A non-centralized way of working. Each repo can be assigned a different role or to a person. There can be many possibilities, i.e. combining with a centralized _master repo_ too.
 
 ![width:340px](./images/repoDistrib.png) share independently between repos
 
@@ -935,7 +975,9 @@ A non-centralized way of working. Each repo can be assigned a different role or 
 
 git is not github / github is not git
 
-github is a remote with fancy collaboration features like the famous _pull request_, which is a merge with a review + approve process.
+github is a cloud service with fancy collaboration features like the famous _pull request_, which is a merge with a review + approve process.
+
+From the point of view of your local repo, in github you simply store a remote repo.
 
 Note: this is not a github configuration course: keys, permissions, etc.
 
@@ -943,11 +985,11 @@ Note: this is not a github configuration course: keys, permissions, etc.
 
 # set up your own 'github'
 
-You don't need github (or similar) to use git and share your work. You can have your own remotes, or your colleagues can let you use them.
+You don't need github (or similar) to use git and __share your work__. You can have your own remotes, or your colleagues can let you use them.
 
-Just setup a shared remote mirror (`git clone --mirror`) with a generic user.
+Just setup a shared remote mirror (`git clone --mirror`) with a generic linux user.
 
-Faster, no network downtime, etc if located in the local network. But no fancy features.
+Faster, no network downtime, etc (if located in the local network). But no fancy features.
 
 ---
 
@@ -955,12 +997,12 @@ Faster, no network downtime, etc if located in the local network. But no fancy f
 
 Most common operations with remotes:
 
-* `add`/`remove` (only once), `rename`
-* `fetch` : receive changes from colleagues
+* `add` (only once), `remove` , `rename`
+* `fetch` : receive colleagues changes from the remote
 * `push` : publish changes (to colleagues or publicly)
-* `pull` : fetch + (automatic) merge/rebase
+* `pull` : `fetch` + __automatic__ merge/rebase
 
-tip: __don't use__ `git pull`, or at least be careful: it's dangerous, will modify your HEAD - better `fetch` + `merge`/`rebase` after verification
+tip: __don't use__ `git pull` (or at least be careful). It's dangerous, your HEAD will be modified automatically. Better do `fetch`, then `merge`/`rebase` after inspection.
 
 ---
 
@@ -1005,13 +1047,9 @@ The difference between options has to do on how the _stash_ and the files are le
 # exercise #6 : cherry-pick, revert
 
 * revert the last commit, revert it again.
-
 * check differences.
-
 * instead of reverting again, with a new branch (in the first revert), cherry-pick the _original_ last commit.
-
 * check differences.
-
 * do it with the CLI too.
 
 ---
@@ -1045,7 +1083,7 @@ Not covered in this training.
 
 # best practices / tips #5
 
-# merge vs rebase & cleanup
+# merge vs rebase + cleanup
 
 ---
 
@@ -1058,7 +1096,7 @@ My personal take:
 * if simple (few branches with nearby origin) : __MERGE__
 * if reintegrating (from the mainline): __REBASE__
 * other cases? depends
-* you can always rewrite history (before _publishing_)
+* you can always rewrite history (before _publishing_!)
 
 ---
 
@@ -1066,11 +1104,11 @@ My personal take:
 
 * delete your old branches, both local and remote
 
-* don't fetch everything, just what you need (otherwise you may get dozens of github PRs)
+* don't fetch/pull everything, just get what you need (otherwise you may get dozens of github PRs)
 
 * use `git prune` and the `git gc` (garbage collector) to get rid of unused references
 
-* `git update-ref`: save time updating branches and don't modify your files
+* `git update-ref`: save time updating branches and don't modify your files (to avoid rebuilding them)
 
 
 ---
@@ -1087,11 +1125,11 @@ My personal take:
 
 Simple tips to avoid losing your work when integrating:
 
-1. before a risky operation, create a new _backup branch_, named like `beforeMerging` (don't check it out)
-1. have a mirror repository. Push there often, and specially before integrating / doing risky operations
-1. push to the corporate repo (may not be allowed)
+* before a risky operation, create a new _backup branch_, named like i.e. _beforeMerging_ (don't check it out)
+* have a mirror repository. Push there often, and specially before integrating / doing risky operations
+* push to the corporate repo (this may not be allowed)
 
-Unlike svn, git is designed to forget useless work
+Remember: unlike svn, git was designed to destroy useless work.
 
 ---
 
@@ -1150,7 +1188,7 @@ I messed it up. My work is lost. Can I get it back?
 * did you do a branch before resetting?
 * did you make a backup in a remote?
 
-If the answer to both questions is no, then perhaps the `git reflog` command may help.
+If the answer to both questions is __NO__, then perhaps the `git reflog` command may help.
 
 Not covered in this training.
 
@@ -1177,14 +1215,15 @@ Quote by Seth Robertson:
 
 # git vs svn
 
-The git UI (its commands) do not have a reputation for being intuitive. Same actions, different names:
+The git UI (its commands) do not have a reputation for being intuitive (Linus Torvalds didn't care). Same actions, different names:
 
 - `git clone` / `svn checkout`
 - `git checkout` / `svn switch`
 - `git pull --rebase` / `svn update`
 - `git commit` / `svn diff >/tmp/mySafepoint1.patch`
-- `git checkout --` / `svn revert # not git revert!`
+- `git checkout --` / `svn revert!`
 - `git push` / `svn commit`
+- `git revert --` / `svn merge '-'` + `svn commit`
 - ...
 
 ---
@@ -1212,16 +1251,25 @@ The drawback is that the user is not really aware of what happens beneath the co
 Don't forget what you have just learned today (lots of information). Practice. Again. Read. Try. Retry. It will pay off: __get fit at git !__
 
 * repeat the exercises
-* do this hands-on online tutorial: https://learngitbranching.js.org/ absolutely recommended!
+* do this hands-on online tutorial: https://learngitbranching.js.org/ __absolutely recommended!__
 * read books and tutorials:
   - [Pro git book](https://git-scm.com/book/en/v2) by Scott Chacon & Ben Straub
   - [bitbucket tutorials](https://www.atlassian.com/git/tutorials) by atlassian
 
 ---
 
-# That's it!<!-- fit -->
+# how do you feel?<!-- fit -->
 
-# Any questions?<!-- fit -->
+
+Are you still scared and insecure?
+
+![bg right 50%](./images/githubNotLost.png)
+
+---
+
+# that's it!<!-- fit -->
+
+# any questions?<!-- fit -->
 <!-- _class: invert -->
 
 ---
